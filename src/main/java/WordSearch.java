@@ -42,6 +42,7 @@ public class WordSearch {
                 for (int x = 0; x < line.length; x++) {
                     if (firstChar.equals(line[x])) {
                         foundLine = searchHorizontallyForward(word, x, y);
+                        foundLine = foundLine.isEmpty() ? searchHorizontallyBackward(word,x,y) : foundLine;
                     }
 
                     if (!foundLine.isEmpty()) {
@@ -56,17 +57,37 @@ public class WordSearch {
         return solution;
     }
 
-    public String searchHorizontallyForward(String word, int startX, int startY) {
+    private String searchHorizontallyForward(String word, int startX, int startY) {
         String[] line = puzzleText.get(startY);
         if (startX + word.length() > line.length) {
             return "";
         }
 
-        String returnVal = word + ": " + getCoordinates(startX,startY);
+        String returnVal = word + ": ";
 
-        for (int x = startX; x - startX < word.length(); x++) {
-            if ((word.charAt(x - startX) + "").equals(line[x])) {
-                returnVal += "," + getCoordinates(x,startY);
+        for (int x = 0; x < word.length(); x++) {
+            if ((word.charAt(x) + "").equals(line[x + startX])) {
+                returnVal += (returnVal.endsWith(" ")? "" : "," ) + getCoordinates(x + startX, startY);
+            } else {
+                returnVal = "";
+                break;
+            }
+        }
+
+        return returnVal;
+    }
+
+    private String searchHorizontallyBackward(String word, int startX, int startY) {
+        String[] line = puzzleText.get(startY);
+        if (startX - word.length() < 0) {
+            return "";
+        }
+
+        String returnVal = word + ": ";
+
+        for (int x = 0; x < word.length(); x++) {
+            if ((word.charAt(x) + "").equals(line[startX - x])) {
+                returnVal += (returnVal.endsWith(" ")? "" : "," ) + getCoordinates(startX - x, startY);
             } else {
                 returnVal = "";
                 break;
