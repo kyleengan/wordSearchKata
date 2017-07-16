@@ -97,11 +97,20 @@ public class WordSearchTest {
 
     @Test
     public void canReadLetterFromGivenCoordinates() throws Exception {
-        setPuzzleFilePath("wordsearchMalformedInput");
+        setPuzzleFilePath("wordsearch");
 
         subject.readFile(puzzleFilePath);
 
         Assert.assertEquals("M", subject.letterAt(1,0));
+    }
+
+    @Test
+    public void canSearchHorizontallyForwardForWordAndOutputResult() throws Exception {
+        setPuzzleFilePath("wordsearch");
+
+        subject.readFile(puzzleFilePath);
+
+        Assert.assertTrue(subject.searchWords().contains("SCOTTY: (0,5),(0,5),(1,5),(2,5),(3,5),(4,5),(5,5)"));
     }
 
 }
