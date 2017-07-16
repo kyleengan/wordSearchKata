@@ -131,4 +131,13 @@ public class WordSearchTest {
         Assert.assertTrue(subject.searchWords() + System.lineSeparator() + "Does not contain Bones.", subject.searchWords().contains("BONES: (0,6),(0,7),(0,8),(0,9),(0,10)"));
     }
 
+    @Test
+    public void canSearchVerticallyUpForWordAndOutputResult() throws Exception {
+        setPuzzleFilePath("wordsearch");
+
+        subject.readFile(puzzleFilePath);
+
+        Assert.assertTrue(subject.searchWords() + System.lineSeparator() + "Does not contain Khan.", subject.searchWords().contains("KHAN: (5,9),(5,8),(5,7),(5,6)"));
+    }
+
 }
