@@ -10,6 +10,11 @@ public class WordSearch {
 
     }
 
+    public void run(String filepath) throws FileNotFoundException, IOException {
+        readFile(filepath);
+        System.out.println(searchWords());
+    }
+
     public void readFile(String filepath) throws FileNotFoundException, IOException {
         File puzzleFile = new File(filepath);
         BufferedReader bufferedReader = new BufferedReader(new FileReader(puzzleFile));
@@ -261,9 +266,9 @@ public class WordSearch {
 
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         WordSearch wordSearch = new WordSearch();
 
-
+        wordSearch.run("wordsearch.csv");
     }
 }
