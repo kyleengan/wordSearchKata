@@ -140,4 +140,13 @@ public class WordSearchTest {
         Assert.assertTrue(subject.searchWords() + System.lineSeparator() + "Does not contain Khan.", subject.searchWords().contains("KHAN: (5,9),(5,8),(5,7),(5,6)"));
     }
 
+    @Test
+    public void canSearchDiagonallyUpForwardForWordAndOutputResult() throws Exception {
+        setPuzzleFilePath("wordsearch");
+
+        subject.readFile(puzzleFilePath);
+
+        Assert.assertTrue(subject.searchWords() + System.lineSeparator() + "Does not contain Chekhov.", subject.searchWords().contains("CHEKHOV: (8,13),(9,12),(10,11),(11,10),(12,9),(13,8),(14,7)"));
+    }
+
 }
