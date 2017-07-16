@@ -167,4 +167,13 @@ public class WordSearchTest {
         Assert.assertTrue(subject.searchWords() + System.lineSeparator() + "Does not contain Uhura.", subject.searchWords().contains("UHURA: (4,0),(3,1),(2,2),(1,3),(0,4)"));
     }
 
+    @Test
+    public void canSearchDiagonallyUpBackwardForWordAndOutputResult() throws Exception {
+        setPuzzleFilePath("wordsearch");
+
+        subject.readFile(puzzleFilePath);
+
+        Assert.assertTrue(subject.searchWords() + System.lineSeparator() + "Does not contain Sulu.", subject.searchWords().contains("SULU: (3,3),(2,2),(1,1),(0,0)"));
+    }
+
 }
