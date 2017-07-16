@@ -30,12 +30,20 @@ public class WordSearch {
         }
     }
 
+    public String letterAt(int x, int y) {
+        return puzzleText.get(y)[x];
+    }
+
     public String[] getWordList() {
         return wordList;
     }
 
     public ArrayList<String[]> getPuzzleText() {
         return puzzleText;
+    }
+
+    public String getCoordinates(int x, int y) {
+        return "(" + x + "," + y + ")";
     }
 
 

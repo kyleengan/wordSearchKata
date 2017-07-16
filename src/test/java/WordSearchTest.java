@@ -90,6 +90,18 @@ public class WordSearchTest {
         Assert.assertArrayEquals(letterList, subject.getPuzzleText().get(0));
     }
 
+    @Test
+    public void canOutputCoordinatesTextFromCoordinates() throws Exception {
+        Assert.assertEquals("(1,0)", subject.getCoordinates(1,0));
+    }
 
+    @Test
+    public void canReadLetterFromGivenCoordinates() throws Exception {
+        setPuzzleFilePath("wordsearchMalformedInput");
+
+        subject.readFile(puzzleFilePath);
+
+        Assert.assertEquals("M", subject.letterAt(1,0));
+    }
 
 }
