@@ -110,7 +110,7 @@ public class WordSearchTest {
 
         subject.readFile(puzzleFilePath);
 
-        Assert.assertTrue(subject.searchWords().contains("SCOTTY: (0,5),(1,5),(2,5),(3,5),(4,5),(5,5)"));
+        Assert.assertTrue(subject.searchWords() + System.lineSeparator() + "Does not contain Scotty.", subject.searchWords().contains("SCOTTY: (0,5),(1,5),(2,5),(3,5),(4,5),(5,5)"));
     }
 
     @Test
@@ -119,7 +119,16 @@ public class WordSearchTest {
 
         subject.readFile(puzzleFilePath);
 
-        Assert.assertTrue(subject.searchWords(), subject.searchWords().contains("KIRK: (4,7),(3,7),(2,7),(1,7)"));
+        Assert.assertTrue(subject.searchWords() + System.lineSeparator() + "Does not contain Kirk.", subject.searchWords().contains("KIRK: (4,7),(3,7),(2,7),(1,7)"));
+    }
+
+    @Test
+    public void canSearchVerticallyDownForWordAndOutputResult() throws Exception {
+        setPuzzleFilePath("wordsearch");
+
+        subject.readFile(puzzleFilePath);
+
+        Assert.assertTrue(subject.searchWords() + System.lineSeparator() + "Does not contain Bones.", subject.searchWords().contains("BONES: (0,6),(0,7),(0,8),(0,9),(0,10)"));
     }
 
 }

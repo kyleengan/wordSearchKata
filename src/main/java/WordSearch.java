@@ -43,10 +43,11 @@ public class WordSearch {
                     if (firstChar.equals(line[x])) {
                         foundLine = searchHorizontallyForward(word, x, y);
                         foundLine = foundLine.isEmpty() ? searchHorizontallyBackward(word,x,y) : foundLine;
+                        foundLine = foundLine.isEmpty() ? searchVerticallyDown(word,x,y) : foundLine;
                     }
 
                     if (!foundLine.isEmpty()) {
-                        solution += foundLine + System.lineSeparator();
+                        solution +=  System.lineSeparator() + foundLine;
                         foundLine = "";
                         break;
                     }
@@ -88,6 +89,27 @@ public class WordSearch {
         for (int x = 0; x < word.length(); x++) {
             if ((word.charAt(x) + "").equals(line[startX - x])) {
                 returnVal += (returnVal.endsWith(" ")? "" : "," ) + getCoordinates(startX - x, startY);
+            } else {
+                returnVal = "";
+                break;
+            }
+        }
+
+        return returnVal;
+    }
+
+    private String searchVerticallyDown(String word, int startX, int startY) {
+        if (startY + word.length() > puzzleText.size()) {
+            return "";
+        }
+
+        String returnVal = word + ": ";
+
+        for (int y = 0; y < word.length(); y++) {
+            String[] line = puzzleText.get(startY + y);
+
+            if ((word.charAt(y) + "").equals(line[startX])) {
+                returnVal += (returnVal.endsWith(" ")? "" : "," ) + getCoordinates(startX, startY + y);
             } else {
                 returnVal = "";
                 break;
