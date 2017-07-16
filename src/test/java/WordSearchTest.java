@@ -70,6 +70,26 @@ public class WordSearchTest {
         Assert.assertNull(subject.getWordList());
     }
 
+    @Test
+    public void canReadPuzzleTextFromCSVFile() throws Exception {
+        setPuzzleFilePath("wordsearch");
+        String[] letterList = {"U","M","K","H","U","R","K","I","N","V","J","O","C","W","E"};
+
+        subject.readFile(puzzleFilePath);
+
+        Assert.assertArrayEquals(letterList, subject.getPuzzleText().get(0));
+    }
+
+    @Test
+    public void canReadPuzzleTextFromCSVFileWithExtraCommasBecauseReasons() throws Exception {
+        setPuzzleFilePath("wordsearchMalformedInput");
+        String[] letterList = {"U","M","K","H","U","R","K","I","N","V","J","O","C","W","E"};
+
+        subject.readFile(puzzleFilePath);
+
+        Assert.assertArrayEquals(letterList, subject.getPuzzleText().get(0));
+    }
+
 
 
 }
